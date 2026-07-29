@@ -1,6 +1,6 @@
 # IDM Tool
 
-A Windows batch script to manage Internet Download Manager (IDM) trial period. Freeze your 30-day trial forever or reset it for a fresh start.
+A Windows tool to manage Internet Download Manager (IDM) trial period. Freeze your 30-day trial forever or reset it for a fresh start.
 
 ## Features
 
@@ -10,7 +10,7 @@ A Windows batch script to manage Internet Download Manager (IDM) trial period. F
 
 ## How It Works
 
-IDM stores trial and activation data in Windows registry keys. This script:
+IDM stores trial and activation data in Windows registry keys. This tool:
 
 1. Identifies IDM-specific CLSID registry keys
 2. Locks (freeze) or deletes (reset) those keys
@@ -19,16 +19,40 @@ IDM stores trial and activation data in Windows registry keys. This script:
 ## Requirements
 
 - Windows 7/8/8.1/10/11 (or Server equivalent)
-- PowerShell (pre-installed on Windows 8+)
+- PowerShell 5.1+ (pre-installed on Windows 10+)
 - Internet connection (for Freeze option)
 - Administrator privileges
 
-## Usage
+---
 
-1. Download `IDM_Tool.cmd`
+## Installation
+
+### Option 1: Run via PowerShell IEX (Recommended)
+
+Open PowerShell as Administrator and run:
+
+```powershell
+iex (irm https://raw.githubusercontent.com/F3aarLeSS/IDM-Tool/main/IDM_Tool.ps1)
+```
+
+### Option 2: Download from GitHub Releases
+
+1. Download `IDM_Tool.cmd` from [Releases](https://github.com/F3aarLeSS/IDM-Tool/releases)
 2. Right-click the file
 3. Select **Run as administrator**
-4. Choose an option from the menu
+
+### Option 3: Clone Repository
+
+```bash
+git clone https://github.com/F3aarLeSS/IDM-Tool.git
+cd IDM-Tool
+```
+
+Then run as Administrator:
+- PowerShell: `.\IDM_Tool.ps1`
+- CMD: `IDM_Tool.cmd`
+
+---
 
 ## Important Notes
 
@@ -47,7 +71,7 @@ IDM stores trial and activation data in Windows registry keys. This script:
 
 ## Architecture Support
 
-The script automatically detects your system architecture (x86/x64) and uses the correct registry paths.
+The tool automatically detects your system architecture (x86/x64) and uses the correct registry paths.
 
 ## Troubleshooting
 
@@ -56,10 +80,21 @@ The script automatically detects your system architecture (x86/x64) and uses the
 - **Freeze not working**: Ensure you have internet connection, then try again
 - **Fake serial error**: Run Reset (option [2]), then Freeze (option [1]) again
 
+## Files
+
+| File | Description |
+|------|-------------|
+| `IDM_Tool.ps1` | PowerShell version (recommended) |
+| `IDM_Tool.cmd` | Batch version (alternative) |
+
 ## Disclaimer
 
-This script is for educational purposes. Use at your own risk. Always backup your registry before making changes.
+This tool is for educational purposes. Use at your own risk. Always backup your registry before making changes.
 
 ## License
 
 MIT License - See [LICENSE](LICENSE) for details.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
