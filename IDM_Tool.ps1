@@ -7,14 +7,14 @@
 
 .NOTES
     Run as Administrator required
-    https://github.com/F3aarLeSS/IDM-Tool
+    https://github.com/NavajyotiBayan/IDM-Tool
 
 .EXAMPLE
     # Run directly (as Administrator)
     .\IDM_Tool.ps1
 
     # Run via IEX (as Administrator)
-    iex (irm https://raw.githubusercontent.com/F3aarLeSS/IDM-Tool/main/IDM_Tool.ps1)
+    iex (irm https://raw.githubusercontent.com/NavajyotiBayan/IDM-Tool/main/IDM_Tool.ps1)
 #>
 
 #Requires -RunAsAdministrator
