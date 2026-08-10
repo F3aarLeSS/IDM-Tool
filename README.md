@@ -37,14 +37,14 @@ iex (irm https://raw.githubusercontent.com/F3aarLeSS/IDM-Tool/main/IDM_Tool.ps1)
 
 ### Option 2: Download from GitHub Releases
 
-1. Download `IDM_Tool.cmd` from [Releases](https://github.com/F3aarLeSS/IDM-Tool/releases)
+1. Download `IDM_Tool.cmd` from [Releases](https://github.com/NavajyotiBayan/IDM-Tool/releases)
 2. Right-click the file
 3. Select **Run as administrator**
 
 ### Option 3: Clone Repository
 
 ```bash
-git clone https://github.com/F3aarLeSS/IDM-Tool.git
+git clone https://github.com/NavajyotiBayan/IDM-Tool.git
 cd IDM-Tool
 ```
 
