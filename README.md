@@ -32,7 +32,7 @@ IDM stores trial and activation data in Windows registry keys. This tool:
 Open PowerShell as Administrator and run:
 
 ```powershell
-iex (irm https://raw.githubusercontent.com/F3aarLeSS/IDM-Tool/main/IDM_Tool.ps1)
+iex (irm https://raw.githubusercontent.com/NavajyotiBayan/IDM-Tool/main/IDM_Tool.ps1)
 ```
 
 ### Option 2: Download from GitHub Releases
