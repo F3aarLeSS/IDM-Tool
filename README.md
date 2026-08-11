@@ -1,100 +1,348 @@
 # IDM Tool
 
-A Windows tool to manage Internet Download Manager (IDM) trial period. Freeze your 30-day trial forever or reset it for a fresh start.
+<p align="center">
+  <strong>Windows Utility for IDM Trial & Activation Management</strong>
+</p>
 
-## Features
+<p align="center">
+  A lightweight PowerShell-based utility for managing Internet Download Manager trial and activation data on Windows.
+</p>
 
-- **Freeze Trial** - Lock the 30-day trial period permanently so it never expires
-- **Reset Activation & Trial** - Clear all data for a fresh 30-day trial
-- **Download IDM** - Open the official IDM download page
+<p align="center">
 
-## How It Works
+![Windows](https://img.shields.io/badge/Windows-7%2B-0078D6?style=for-the-badge\&logo=windows\&logoColor=white)
+![PowerShell](https://img.shields.io/badge/PowerShell-5.1%2B-5391FE?style=for-the-badge\&logo=powershell\&logoColor=white)
+![Architecture](https://img.shields.io/badge/Architecture-x86%20%7C%20x64-6C63FF?style=for-the-badge)
+![License](https://img.shields.io/github/license/NavajyotiBayan/IDM-Tool?style=for-the-badge)
 
-IDM stores trial and activation data in Windows registry keys. This tool:
-
-1. Identifies IDM-specific CLSID registry keys
-2. Locks (freeze) or deletes (reset) those keys
-3. IDM cannot track trial expiration when keys are locked
-
-## Requirements
-
-- Windows 7/8/8.1/10/11 (or Server equivalent)
-- PowerShell 5.1+ (pre-installed on Windows 10+)
-- Internet connection (for Freeze option)
-- Administrator privileges
+</p>
 
 ---
 
-## Installation
+## ✨ Overview
 
-### Option 1: Run via PowerShell IEX (Recommended)
+**IDM Tool** is a lightweight Windows utility designed to manage Internet Download Manager (IDM) trial and activation-related registry data.
 
-Open PowerShell as Administrator and run:
+It provides a simple menu-driven interface for performing common IDM maintenance operations without manually navigating through Windows Registry Editor.
 
-```powershell
-iex (irm https://raw.githubusercontent.com/NavajyotiBayan/IDM-Tool/main/IDM_Tool.ps1)
+> **Designed for Windows • Lightweight • No installation required**
+
+---
+
+## 🚀 Features
+
+| Feature                        | Description                                       |
+| ------------------------------ | ------------------------------------------------- |
+| 🔒 **Freeze Trial**            | Lock IDM trial-related registry data              |
+| ♻️ **Reset Activation**        | Remove IDM trial/activation-related data          |
+| ⬇️ **Download IDM**            | Open the official IDM download page               |
+| 💾 **Registry Backup**         | Creates backups before modifying registry data    |
+| 🖥️ **Architecture Detection** | Automatically detects x86/x64 Windows             |
+| ⚡ **Lightweight**              | Runs directly from PowerShell or CMD              |
+| 🛡️ **Administrator Check**    | Detects whether elevated privileges are available |
+
+---
+
+## 🧩 How It Works
+
+IDM stores information related to its trial and activation state in Windows Registry locations.
+
+IDM Tool performs the following high-level operations:
+
+```text
+┌──────────────────────┐
+│     Start IDM Tool   │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Check Administrator  │
+│     Privileges       │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Detect Windows       │
+│ Architecture         │
+└──────────┬───────────┘
+           │
+           ▼
+┌──────────────────────┐
+│ Detect IDM Registry  │
+│       Data           │
+└──────────┬───────────┘
+           │
+      ┌────┴─────┐
+      ▼          ▼
+   Freeze       Reset
+      │          │
+      ▼          ▼
+   Lock Data   Remove Data
+      │          │
+      └────┬─────┘
+           ▼
+┌──────────────────────┐
+│        Done          │
+└──────────────────────┘
 ```
 
-### Option 2: Download from GitHub Releases
+Before registry modifications, the tool creates a backup so the affected data can be restored if necessary.
 
-1. Download `IDM_Tool.cmd` from [Releases](https://github.com/NavajyotiBayan/IDM-Tool/releases)
-2. Right-click the file
-3. Select **Run as administrator**
+---
 
-### Option 3: Clone Repository
+## 🖥️ Menu
+
+```text
+╔══════════════════════════════════════╗
+║              IDM TOOL                ║
+╠══════════════════════════════════════╣
+║                                      ║
+║  [1]  Freeze Trial                   ║
+║  [2]  Reset Activation & Trial       ║
+║  [3]  Download IDM                   ║
+║  [0]  Exit                           ║
+║                                      ║
+╚══════════════════════════════════════╝
+```
+
+---
+
+## 📋 Requirements
+
+### Operating System
+
+* Windows 7
+* Windows 8 / 8.1
+* Windows 10
+* Windows 11
+* Compatible Windows Server editions
+
+### Runtime
+
+* PowerShell **5.1 or newer**
+* Administrator privileges
+* Internet connection where required by the selected operation
+
+> PowerShell 5.1 is included with supported Windows installations.
+
+---
+
+## 📦 Installation
+
+### Option 1 — PowerShell
+
+Run the PowerShell script from an **Administrator PowerShell** session.
+
+```powershell
+.\IDM_Tool.ps1
+```
+
+### Option 2 — CMD
+
+Run:
+
+```cmd
+IDM_Tool.cmd
+```
+
+Run the command shell as **Administrator** when required.
+
+### Option 3 — Clone the Repository
 
 ```bash
 git clone https://github.com/NavajyotiBayan/IDM-Tool.git
 cd IDM-Tool
 ```
 
-Then run as Administrator:
-- PowerShell: `.\IDM_Tool.ps1`
-- CMD: `IDM_Tool.cmd`
+Then launch the desired version:
+
+```powershell
+.\IDM_Tool.ps1
+```
+
+or:
+
+```cmd
+IDM_Tool.cmd
+```
 
 ---
 
-## Important Notes
+## 🔧 Operations
 
-- **Freeze Trial**: Requires internet to trigger test downloads that create registry keys. IDM updates can be installed directly after freezing.
-- **Reset**: Gives you a fresh 30-day trial. Run this if IDM shows fake serial key errors or activation nag screens.
-- **Backups**: Registry backups are saved to `%SystemRoot%\Temp\` before any changes.
+### 🔒 Freeze Trial
 
-## Menu Options
+Locks the relevant IDM registry data used by the tool.
 
+Use this operation when you want to preserve the current IDM trial state.
+
+### ♻️ Reset Activation & Trial
+
+Removes the IDM-related registry data managed by the utility.
+
+A registry backup is created before changes are made.
+
+### ⬇️ Download IDM
+
+Opens the official IDM download page so IDM can be downloaded directly from the publisher.
+
+---
+
+## 💾 Registry Backups
+
+Registry backups are created before modifications.
+
+Default backup location:
+
+```text
+%SystemRoot%\Temp\
 ```
-[1] Freeze Trial        - Lock 30-day trial forever
-[2] Reset Activation    - Get fresh 30-day trial
-[3] Download IDM        - Open official download page
-[0] Exit
+
+This provides a safety layer before registry data is changed.
+
+> **Important:** Do not manually delete registry data unless you understand exactly what is being modified.
+
+---
+
+## 🖥️ Architecture Support
+
+IDM Tool automatically detects the Windows architecture and selects the appropriate registry paths.
+
+```text
+Windows
+   │
+   ├── x86  → 32-bit registry paths
+   │
+   └── x64  → 64-bit registry paths
 ```
 
-## Architecture Support
+No manual architecture configuration is required.
 
-The tool automatically detects your system architecture (x86/x64) and uses the correct registry paths.
+---
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
-- **"Run as Administrator" error**: Right-click the script and select "Run as administrator"
-- **IDM not found**: Use option [3] to download IDM first
-- **Freeze not working**: Ensure you have internet connection, then try again
-- **Fake serial error**: Run Reset (option [2]), then Freeze (option [1]) again
+### ❌ Administrator privileges required
 
-## Files
+Run PowerShell, CMD, or the script using **Run as administrator**.
 
-| File | Description |
-|------|-------------|
-| `IDM_Tool.ps1` | PowerShell version (recommended) |
-| `IDM_Tool.cmd` | Batch version (alternative) |
+### ❌ IDM is not detected
 
-## Disclaimer
+Install IDM first and then run the utility again.
 
-This tool is for educational purposes. Use at your own risk. Always backup your registry before making changes.
+### ❌ Freeze operation does not work
 
-## License
+Make sure IDM is installed correctly and that the required network connection is available.
 
-MIT License - See [LICENSE](LICENSE) for details.
+### ❌ IDM displays an activation or serial-related message
 
-## Contributing
+Use the **Reset Activation & Trial** operation and then restart IDM.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+---
+
+## 📁 Project Structure
+
+```text
+IDM-Tool/
+│
+├── IDM_Tool.ps1        # Main PowerShell implementation
+├── IDM_Tool.cmd        # CMD launcher / alternative interface
+│
+├── docs/               # Project documentation
+│
+├── CHANGELOG.md        # Version history
+├── CONTRIBUTING.md     # Contribution guidelines
+├── SECURITY.md         # Security policy
+├── LICENSE             # MIT License
+└── README.md           # Project documentation
+```
+
+---
+
+## 🧰 Technology
+
+```text
+PowerShell 5.1+
+        │
+        ├── Windows Registry
+        ├── Windows Architecture Detection
+        ├── Administrative Privileges
+        └── IDM Integration
+```
+
+The project is intentionally lightweight and does not require a third-party runtime.
+
+---
+
+## 🔐 Security & Safety
+
+This utility modifies Windows Registry data.
+
+Before using it:
+
+* Create a system restore point if appropriate.
+* Keep registry backups.
+* Run scripts only from a source you trust.
+* Review the source code before executing downloaded scripts.
+* Do not modify unrelated registry keys.
+
+For security-related concerns, see `SECURITY.md`.
+
+---
+
+## ⚠️ Important Disclaimer
+
+IDM Tool is provided **as-is** for educational and system-administration purposes.
+
+Modifying application activation or trial-related data may conflict with the software publisher's license or terms of service. Users are responsible for complying with the applicable IDM license and terms.
+
+The author is not responsible for data loss, system instability, application problems, or other consequences resulting from use of this software.
+
+**Always maintain a backup before modifying the Windows Registry.**
+
+---
+
+## 📜 License
+
+This project is released under the **MIT License**.
+
+See [`LICENSE`](LICENSE) for the complete license text.
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, documentation improvements, and suggestions are welcome.
+
+Before contributing, please read:
+
+* [`CONTRIBUTING.md`](CONTRIBUTING.md)
+* [`SECURITY.md`](SECURITY.md)
+* [`CHANGELOG.md`](CHANGELOG.md)
+
+---
+
+## ⭐ Support the Project
+
+If this project is useful to you:
+
+⭐ **Star the repository**
+
+🐛 **Report bugs**
+
+💡 **Suggest improvements**
+
+🔧 **Contribute code**
+
+---
+
+<p align="center">
+
+<strong>IDM Tool</strong><br>
+Lightweight Windows Registry Utility
+
+<br><br>
+
+Made for Windows users who prefer simple, transparent tools.
+
+</p>
